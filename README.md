@@ -4,6 +4,11 @@ ubuntu-chef-workout
 This repo at the moment only contains code whose purpose is to explore chef's
 (and vagrant/berkshelf/knife-solo) capabilities in provisioning ubuntu 14.04.
 
+Usage
+=====
+
+`wget -q -O - https://github.com/grota/ubuntu-chef-workout/raw/master/bootstrap.sh | sudo bash`
+
 Notes
 =====
 
