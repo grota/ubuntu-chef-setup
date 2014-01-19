@@ -4,6 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.hostname = "ubuntu-chef-workout-berkshelf"
   config.vm.box = "trusty-14.04-cloudimg-i386"
+  # Image prepared by canonical for vagrant
   config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
 
   # Assign this VM to a host-only network IP, allowing you to access it
