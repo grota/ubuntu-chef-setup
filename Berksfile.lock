@@ -16,16 +16,19 @@
       "locked_version": "1.4.2"
     },
     "windows": {
-      "locked_version": "1.12.6"
+      "locked_version": "1.12.4"
     },
     "chef_handler": {
       "locked_version": "1.1.4"
     },
+    "powershell": {
+      "locked_version": "1.1.2"
+    },
     "runit": {
-      "locked_version": "1.5.8"
+      "locked_version": "1.5.5"
     },
     "yum": {
-      "locked_version": "3.0.4"
+      "locked_version": "3.0.2"
     },
     "yum-epel": {
       "locked_version": "0.2.0"
