@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 exists() {
   if command -v $1 >/dev/null 2>&1
@@ -9,10 +10,16 @@ exists() {
   fi
 }
 
+if [ "$(ls -A .)"  ]; then
+  echo "Current Dir is not empty, bailing out"
+  exit 1
+fi
+
 if [ ! -d cookbooks ]; then
   echo "Cookbooks dir not found, downloading the archive."
   wget -q -O ubuntu-chef-workout.tar.gz https://github.com/grota/ubuntu-chef-workout/archive/master.tar.gz
   tar --strip-components=1 -xzf ubuntu-chef-workout.tar.gz
+  rm -f ubuntu-chef-workout.tar.gz
 fi
 
 if ! exists curl; then
