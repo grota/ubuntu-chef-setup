@@ -6,9 +6,9 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: saucy-server-cloudimg-amd64
+  - name: ubuntu-1404
     driver_config:
-      box: saucy-server-cloudimg-amd64
+      box: trusty-14.04-cloudimg-i386
 
 suites:
   - name: default

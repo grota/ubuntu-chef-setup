@@ -3,14 +3,17 @@
 
 Vagrant.configure("2") do |config|
   config.vm.hostname = "ubuntu-chef-workout-berkshelf"
-  config.vm.box = "saucy-server-cloudimg-amd64"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/saucy/current/saucy-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = "trusty-14.04-cloudimg-i386"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
 
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
   config.vm.network :private_network, ip: "33.33.33.10"
+  #config.vm.provider "virtualbox" do |vb|
+    #vb.customize ["modifyvm", :id, '--memory', 2048]
+  #end
 
   # The path to the Berksfile to use with Vagrant Berkshelf
   # config.berkshelf.berksfile_path = "./Berksfile"
