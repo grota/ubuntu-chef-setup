@@ -12,9 +12,6 @@ Vagrant.configure("2") do |config|
   # network interface) by any external networks.
   config.vm.network :private_network, ip: "33.33.33.10"
 
-  config.ssh.max_tries = 40
-  config.ssh.timeout   = 120
-
   # The path to the Berksfile to use with Vagrant Berkshelf
   # config.berkshelf.berksfile_path = "./Berksfile"
 
