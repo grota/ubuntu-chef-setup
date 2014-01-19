@@ -1,3 +1,3 @@
 site :opscode
 
-cookbook 'git'
+cookbook 'initial', path: 'site-cookbooks/initial'

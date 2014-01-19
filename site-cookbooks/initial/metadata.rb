@@ -1,8 +1,9 @@
-name             'site-cookbooks/initial'
-maintainer       'YOUR_NAME'
-maintainer_email 'YOUR_EMAIL'
+name             'initial custom cookbook'
+maintainer       'Giuseppe Rota'
+maintainer_email 'rota.giuseppe@gmail.com'
 license          'All rights reserved'
-description      'Installs/Configures site-cookbooks/initial'
+description      'Wraps depencies on other community cookbooks'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
 
+depends "git"
