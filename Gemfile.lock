@@ -87,6 +87,8 @@ GEM
     i18n (0.6.9)
     ipaddress (0.8.0)
     json (1.7.7)
+    kitchen-vagrant (0.14.0)
+      test-kitchen (~> 1.0)
     knife-solo (0.4.1)
       chef (>= 10.12)
       erubis (~> 2.7.0)
@@ -206,6 +208,7 @@ DEPENDENCIES
   chef
   foodcritic
   gitkeep
+  kitchen-vagrant
   knife-solo
   knife-solo_data_bag
   test-kitchen
