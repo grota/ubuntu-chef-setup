@@ -1,5 +1,12 @@
 {
   "run_list": [
-    "recipe[initial::default]"
-    ]
+    "recipe[initial::default]",
+    "recipe[rvm::user]"
+    ],
+  "rvm": {
+    "user_default_ruby": "ruby-2.1.0",
+    "user_installs": [{
+      "user": "grota"
+    }]
+  }
 }

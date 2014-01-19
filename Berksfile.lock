@@ -1,7 +1,30 @@
 {
   "sources": {
+    "rvm": {
+      "locked_version": "0.9.1",
+      "git": "git://github.com/fnichol/chef-rvm.git",
+      "ref": "26ad5c043c70ea98855a049fbbacb7ffc5ad73e3"
+    },
     "initial": {
       "path": "./site-cookbooks/initial"
+    },
+    "java": {
+      "locked_version": "1.15.4"
+    },
+    "windows": {
+      "locked_version": "1.12.4"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
+    },
+    "powershell": {
+      "locked_version": "1.1.2"
+    },
+    "aws": {
+      "locked_version": "1.0.0"
+    },
+    "chef_gem": {
+      "locked_version": "0.1.0"
     },
     "apt": {
       "locked_version": "2.3.4"
@@ -14,15 +37,6 @@
     },
     "build-essential": {
       "locked_version": "1.4.2"
-    },
-    "windows": {
-      "locked_version": "1.12.4"
-    },
-    "chef_handler": {
-      "locked_version": "1.1.4"
-    },
-    "powershell": {
-      "locked_version": "1.1.2"
     },
     "runit": {
       "locked_version": "1.5.5"

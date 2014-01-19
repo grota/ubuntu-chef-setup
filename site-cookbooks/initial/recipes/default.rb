@@ -8,3 +8,4 @@
 
 include_recipe "apt::default"
 include_recipe "git::default"
+include_recipe "rvm::user"
