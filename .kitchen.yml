@@ -6,10 +6,12 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: ubuntu-12.04
-  - name: centos-6.4
+  - name: saucy-server-cloudimg-amd64
+    driver_config:
+      box: saucy-server-cloudimg-amd64
 
 suites:
   - name: default
     run_list:
+      - recipe[ubuntu-chef-workout::default]
     attributes:
