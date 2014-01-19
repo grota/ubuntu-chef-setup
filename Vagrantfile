@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
     }
 
     chef.run_list = [
-        "recipe[ubuntu-chef-workout::default]"
+        "recipe[initial::default]"
     ]
   end
 end
