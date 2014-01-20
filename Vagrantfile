@@ -7,6 +7,7 @@ def load_user_lib( filename )
     JSON.parse( IO.read(filename)  )
 end
 node_json = load_user_lib('dna.json')
+run_list  = node_json.delete("run_list")
 
 Vagrant.configure("2") do |config|
   config.vm.hostname = "ubuntu-chef-workout-berkshelf"
@@ -40,6 +41,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.json = node_json
-    chef.run_list = node_json["run_list"]
+    chef.run_list = run_list
   end
 end
