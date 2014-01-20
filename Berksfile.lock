@@ -27,7 +27,7 @@
       "locked_version": "0.1.0"
     },
     "apt": {
-      "locked_version": "2.3.4"
+      "locked_version": "1.7.0"
     },
     "git": {
       "locked_version": "2.9.0"
