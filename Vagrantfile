@@ -1,6 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'json'
+
+def load_user_lib( filename )
+    JSON.parse( IO.read(filename)  )
+end
+node_json = load_user_lib('dna.json')
+
 Vagrant.configure("2") do |config|
   config.vm.hostname = "ubuntu-chef-workout-berkshelf"
   config.vm.box = "trusty-14.04-cloudimg-i386"
@@ -32,11 +39,7 @@ Vagrant.configure("2") do |config|
   # config.berkshelf.except = []
 
   config.vm.provision :chef_solo do |chef|
-    chef.json = {
-    }
-
-    chef.run_list = [
-        "recipe[initial::default]"
-    ]
+    chef.json = node_json
+    chef.run_list = node_json["run_list"]
   end
 end

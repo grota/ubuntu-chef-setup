@@ -4,9 +4,12 @@
     "recipe[rvm::user]"
     ],
   "rvm": {
+    "rvmrc": { "rvm_autolibs_flag": "fail" },
+    "default_ruby": "",
     "user_default_ruby": "ruby-2.1.0",
     "user_installs": [{
-      "user": "grota"
+      "user": "grota",
+      "rubies": ["2.1.0"]
     }]
   }
 }

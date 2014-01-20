@@ -7,5 +7,7 @@
 # All rights reserved - Do Not Redistribute
 
 include_recipe "apt::default"
+# required by rvm
+package "gawk"
 include_recipe "git::default"
 include_recipe "rvm::user"

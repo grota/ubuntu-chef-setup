@@ -1,5 +1,9 @@
 #!/bin/bash
 set -e
+if [ -z $SUDO_USER  ]; then
+  echo "Not running as sudo, bailing out"
+  exit 1
+fi
 
 exists() {
   if command -v $1 >/dev/null 2>&1
@@ -24,7 +28,7 @@ fi
 
 if ! exists curl; then
   echo Installing curl.
-  sudo apt-get install -y curl
+  sudo apt-get install -y curl < /dev/null
 fi
 
 if ! exists chef-solo; then
@@ -32,7 +36,8 @@ if ! exists chef-solo; then
   curl -L https://www.opscode.com/chef/install.sh | sudo bash
 fi
 
+TARGET_USER=$SUDO_USER
 if command grep -q vboxsf /etc/group; then
-  echo Found vboxsf group, assuming we are in Virtualbox, adding $USER to vboxsf group.
-  sudo usermod -a -G vboxsf $USER
+  echo Found vboxsf group, assuming we are in Virtualbox, adding $TARGET_USER to vboxsf group.
+  sudo usermod -a -G vboxsf $TARGET_USER
 fi
