@@ -11,6 +11,18 @@
     "java": {
       "locked_version": "1.15.4"
     },
+    "runit": {
+      "locked_version": "1.5.5"
+    },
+    "yum": {
+      "locked_version": "3.0.2"
+    },
+    "windows": {
+      "locked_version": "1.12.4"
+    },
+    "powershell": {
+      "locked_version": "1.1.2"
+    },
     "chef_gem": {
       "locked_version": "0.1.0"
     },
@@ -26,26 +38,14 @@
     "build-essential": {
       "locked_version": "1.4.2"
     },
-    "windows": {
-      "locked_version": "1.12.4"
-    },
-    "chef_handler": {
-      "locked_version": "1.1.4"
-    },
-    "powershell": {
-      "locked_version": "1.1.2"
-    },
-    "runit": {
-      "locked_version": "1.5.5"
-    },
-    "yum": {
-      "locked_version": "3.0.2"
-    },
     "yum-epel": {
       "locked_version": "0.2.0"
     },
     "aws": {
       "locked_version": "1.0.0"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
     }
   }
 }
