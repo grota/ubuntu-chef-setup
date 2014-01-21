@@ -7,7 +7,20 @@ def load_user_lib( filename )
     JSON.parse( IO.read(filename)  )
 end
 node_json = load_user_lib('dna.json')
-run_list  = node_json.delete("run_list")
+# Vagrant specific config
+node_json['rvm']['user_installs'][0]['user'] = 'vagrant'
+
+# This is left as a note, the rvm::vagrant only fixes
+# the issue of chef+rvm when rvm is installed system-wide
+# (Not our case). chef-solo will still fail interactively
+# but it's ok, just switch to system ruby beforehand.
+#node_json['rvm']['vagrant'] = {
+  #'system_chef_solo' => '/usr/bin/chef-solo'
+#}
+#node_json['rvm']['root_path'] = '/home/vagrant/.rvm'
+#run_list = node_json.delete("run_list").unshift('recipe[rvm::vagrant]')
+
+run_list = node_json.delete("run_list")
 
 Vagrant.configure("2") do |config|
   config.vm.hostname = "ubuntu-chef-workout-berkshelf"
