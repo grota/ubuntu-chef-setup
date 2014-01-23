@@ -3,6 +3,7 @@ site :opscode
 #berks install -p cookbooks -e custom && rm -fr cookbooks/initial
 cookbook 'rvm', github: 'fnichol/chef-rvm'
 cookbook 'initial', path: 'site-cookbooks/initial'
+cookbook 'php'
 
 # Fricking Berkshelf does something odd with vagrant, it messes up Berkshelf.lock,
 # there seem to be quite a few GH issues about this. Upgradind Berkshelf does not
