@@ -36,6 +36,7 @@ if ENV['DISPLAY']
   # interactive session, asking the user to download the dropbox daemon
   execute "launch dropbox start -i to download the dropbox daemon" do
     command "dropbox start -i"
+    user node['initial']['user']
     not_if { ::File.exists?("/home/#{node['initial']['user']}/.dropbox-dist/dropboxd") }
   end
 else

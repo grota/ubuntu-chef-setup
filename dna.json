@@ -1,17 +1,7 @@
 {
   "run_list": [
-    "recipe[initial::default]",
-    "recipe[rvm::user]"
+    "recipe[initial::default]"
     ],
-  "rvm": {
-    "rvmrc": { "rvm_autolibs_flag": "fail" },
-    "default_ruby": "",
-    "user_default_ruby": "ruby-2.1.0",
-    "user_installs": [{
-      "user": "grota",
-      "rubies": ["2.1.0"]
-    }]
-  },
   "mysql": {
     "remove_anonymous_users": "true",
     "allow_remote_root": "false",

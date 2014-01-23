@@ -1,0 +1,20 @@
+{
+  "run_list": [
+    "recipe[initial::user]"
+    ],
+  "rvm": {
+    "rvmrc": { "rvm_autolibs_flag": "fail" },
+    "default_ruby": "",
+    "user_default_ruby": "ruby-2.1.0",
+    "user_installs": [{
+      "user": "grota",
+      "rubies": ["2.1.0"]
+    }]
+  },
+  "initial": {
+    "user":  "grota",
+    "dotfiles": {
+      "repo": "git@github.com:grota/dotfiles.git"
+    }
+  }
+}
