@@ -24,7 +24,12 @@
     "default_modules": [ "alias", "auth_basic", "fastcgi", "mime", "rewrite", "status", "setenvif" ]
   },
   "initial": {
-     "dropbox_source_dir": "dropbox_link",
-     "dropbox_target_dir": "/home/grota/Dropbox"
+    "user":  "grota",
+    "dropbox": {
+       "arch": "amd64",
+       "version": "1.6.0",
+       "source_dir": "/home/grota/Projects/devops/ubuntu-chef-workout/dropbox_backup",
+       "target_dir": "/home/grota/Dropbox"
+    }
   }
 }

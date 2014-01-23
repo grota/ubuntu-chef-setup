@@ -9,6 +9,10 @@ end
 node_json = load_user_lib('dna.json')
 # Vagrant specific config
 node_json['rvm']['user_installs'][0]['user'] = 'vagrant'
+node_json['initial']['user'] = 'vagrant'
+node_json['initial']['dropbox']['arch'] = 'i386'
+node_json['initial']['dropbox']['source_dir'] = '/vagrant/dropbox_backup'
+node_json['initial']['dropbox']['target_dir'] = '/home/vagrant/Dropbox'
 
 # This is left as a note, the rvm::vagrant only fixes
 # the issue of chef+rvm when rvm is installed system-wide

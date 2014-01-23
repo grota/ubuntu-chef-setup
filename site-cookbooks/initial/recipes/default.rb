@@ -2,9 +2,12 @@
 # Cookbook Name:: site-cookbooks/initial
 # Recipe:: default
 #
-# Copyright (C) 2014 YOUR_NAME
-# 
+# Copyright (C) 2014 Giuseppe Rota
+#
 # All rights reserved - Do Not Redistribute
+if node['initial'].nil?
+  Chef::Application.fatal! "You must set the node['initial'] attribute in chef-solo mode."
+end
 
 include_recipe "apt::default"
 # required by rvm
