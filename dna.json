@@ -31,5 +31,9 @@
        "source_dir": "/home/grota/Projects/devops/ubuntu-chef-workout/dropbox_backup",
        "target_dir": "/home/grota/Dropbox"
     }
+  },
+  "hub": {
+    "src_path": "/home/grota/local/src",
+    "install_path": "/home/grota/local"
   }
 }
