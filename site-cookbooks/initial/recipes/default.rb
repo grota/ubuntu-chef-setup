@@ -12,6 +12,8 @@ package "gawk"
 include_recipe "git::default"
 include_recipe "rvm::user"
 include_recipe "php"
+include_recipe "mysql::server"
+include_recipe "mysql::client"
 my_packages = %w{tmux ikiwiki libtext-markdown-perl libtext-multimarkdown-perl libhighlight-perl libxml-writer-perl}
 my_packages.each do |pkg|
   package pkg

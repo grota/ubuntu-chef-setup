@@ -11,5 +11,13 @@
       "user": "grota",
       "rubies": ["2.1.0"]
     }]
+  },
+  "mysql": {
+    "remove_anonymous_users": "true",
+    "allow_remote_root": "false",
+    "remove_test_database": "true",
+    "server_root_password": "manager",
+    "server_debian_password": "XYW4WwOj5dqwHYggm1kWb5XSeP5Ioyi5f4WYGxl",
+    "server_repl_password": "uPWxdMdGz8neEBwCv6zYNDybRumptgckjNxEAxJUK8v"
   }
 }

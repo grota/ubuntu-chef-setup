@@ -9,3 +9,4 @@ version          '0.1.0'
 depends "apt", "= 1.7.0"
 depends "git"
 depends "php"
+depends "mysql"
