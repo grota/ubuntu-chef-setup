@@ -22,5 +22,9 @@
   },
   "apache": {
     "default_modules": [ "alias", "auth_basic", "fastcgi", "mime", "rewrite", "status", "setenvif" ]
+  },
+  "initial": {
+     "dropbox_source_dir": "dropbox_link",
+     "dropbox_target_dir": "/home/grota/Dropbox"
   }
 }
