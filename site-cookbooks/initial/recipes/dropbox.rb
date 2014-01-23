@@ -18,7 +18,7 @@ execute "sync dropbox before from backup" do
   cwd "#{run_context.cookbook_collection['initial'].root_dir}/../../"
   not_if do
     target_dir = "#{node['initial']['dropbox']['target_dir']}"
-    ::Dir.exists?(target_dir) && !::Dir.entries(target_dir).empty?
+    ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
   end
 end
 

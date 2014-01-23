@@ -15,6 +15,9 @@
     "user":  "grota",
     "dotfiles": {
       "repo": "git@github.com:grota/dotfiles.git"
+    },
+    "dropbox": {
+       "target_dir": "/home/grota/Dropbox"
     }
   }
 }

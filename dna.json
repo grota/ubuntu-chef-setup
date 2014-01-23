@@ -18,7 +18,7 @@
     "dropbox": {
        "arch": "amd64",
        "version": "1.6.0",
-       "source_dir": "/home/grota/Projects/devops/ubuntu-chef-workout/dropbox_backup",
+       "source_dir": "dropbox_backup",
        "target_dir": "/home/grota/Dropbox"
     }
   },
