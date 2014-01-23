@@ -6,3 +6,4 @@ log_level :info
 verbose_logging    false
 #file_cache_path    "/var/chef/cache"
 #file_backup_path   "/var/chef/backup"
+json_attribs 'dna.json'
