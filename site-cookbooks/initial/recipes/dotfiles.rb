@@ -110,6 +110,27 @@ link "link to main ssh keys (priv)" do
   target_file "#{target_user_home}/.ssh/gmail"
 end
 
+# the private remote is in Dropbox only so the "url" changes with the username,
+# for example in Vagrant
+t=  "#{target_user_home}/#{dotfiles_repo_dir}/.gitmodules"
+log t
+log "substitute with #{private_dotfile_repo_in_dropbox}"
+
+ruby_block "change in .gitmodules the path of the private submodule remote" do
+  block do
+    t=  "#{target_user_home}/#{dotfiles_repo_dir}/.gitmodules"
+    rc = Chef::Util::FileEdit.new(t)
+    rc.search_file_replace_line(/private_rcfiles/, "        url = #{private_dotfile_repo_in_dropbox}")
+    rc.write_file
+  end
+end
+
+execute "git submodule sync required after .gitmodules change" do
+  command "git submodule sync"
+  cwd "#{target_user_home}/#{dotfiles_repo_dir}"
+  user target_user
+end
+
 execute "launch dotfiles install" do
   command "./install.sh"
   cwd "#{target_user_home}/#{dotfiles_repo_dir}"
