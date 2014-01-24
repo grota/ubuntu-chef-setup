@@ -1,5 +1,5 @@
 # sudo chef-solo -c solo.rb
-json_attribs 'dna.json'
+json_attribs 'sudo.json'
 current_dir = File.expand_path(File.dirname(__FILE__))
 cookbook_path [current_dir+"/cookbooks", current_dir+"/site-cookbooks"]
 log_level :info

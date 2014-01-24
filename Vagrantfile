@@ -6,7 +6,7 @@ require 'json'
 def load_user_lib( filename )
     JSON.parse( IO.read(filename)  )
 end
-node_json = load_user_lib('dna.json')
+node_json = load_user_lib('sudo.json')
 # Vagrant specific config
 node_json['rvm']['user_installs'][0]['user'] = 'vagrant'
 node_json['initial']['user'] = 'vagrant'

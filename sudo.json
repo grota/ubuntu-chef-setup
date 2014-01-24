@@ -1,6 +1,6 @@
 {
   "run_list": [
-    "recipe[initial::default]"
+    "recipe[initial::sudo]"
     ],
   "mysql": {
     "remove_anonymous_users": "true",
