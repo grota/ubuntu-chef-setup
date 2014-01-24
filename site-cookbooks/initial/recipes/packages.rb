@@ -7,7 +7,7 @@ aptitude compizconfig-settings-manager gnome-tweak-tool mplayer2
 transmission-gtk gtk2-engines-pixbuf indicator-multiload cabextract dconf-tools
 vim-gnome alarm-clock-applet lm-sensors hddtemp psensor pbzip2 tree
 openjdk-7-jdk ant hamster-indicator ccache sqlitebrowser lftp xapian-omega
-libsearch-xapian-perl libdigest-sha-perl libhtml-scrubber-perl
+libsearch-xapian-perl libdigest-sha-perl libhtml-scrubber-perl rake
 }
 
 my_packages.each do |pkg|
