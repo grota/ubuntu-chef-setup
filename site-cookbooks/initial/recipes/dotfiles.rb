@@ -96,6 +96,7 @@ execute "move the private repo back into the dotfiles_repo_dir" do
     target_dir = "#{target_user_home}/#{dotfiles_repo_dir}/private"
     ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
   end
+  user target_user
 end
 
 # we need to re-link the ssh keys
@@ -112,4 +113,5 @@ end
 execute "launch dotfiles install" do
   command "./install.sh"
   cwd "#{target_user_home}/#{dotfiles_repo_dir}"
+  user target_user
 end

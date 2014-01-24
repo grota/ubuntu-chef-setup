@@ -1,5 +1,5 @@
-ubuntu-chef-solo-setup
-======================
+ubuntu-chef-setup
+=================
 
 This repo contains code whose purpose is to bootstrap my development machine.
 
