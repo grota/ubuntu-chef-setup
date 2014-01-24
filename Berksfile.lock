@@ -50,9 +50,6 @@
     "yum-epel": {
       "locked_version": "0.2.0"
     },
-    "hub": {
-      "locked_version": "1.0.4"
-    },
     "xml": {
       "locked_version": "1.2.0"
     },

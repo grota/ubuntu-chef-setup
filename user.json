@@ -14,6 +14,7 @@
   "initial": {
     "user":  "grota",
     "dotfiles": {
+      //"repo": "dropbox_backup/git_repos/github_rcfiles"
       "repo": "git@github.com:grota/dotfiles.git"
     },
     "dropbox": {
