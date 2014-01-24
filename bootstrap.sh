@@ -14,7 +14,7 @@ exists() {
   fi
 }
 
-if [ "$(ls -A .)"  ]; then
+if [ "$(ls -A .)" -a ! -f bootstrap.sh ]; then
   echo "Current Dir is not empty, bailing out"
   exit 1
 fi
