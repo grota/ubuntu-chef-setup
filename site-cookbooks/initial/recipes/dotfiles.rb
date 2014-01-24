@@ -55,6 +55,7 @@ execute "clone the private dotfiles repo" do
   command <<-BASH
   git clone #{private_dotfile_repo_in_dropbox} #{private_clone_temp_path}
   BASH
+  user target_user
   not_if do
     target_dir = private_clone_temp_path
     private_temp_path_exists = ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
@@ -82,6 +83,7 @@ execute "clone the dotfiles repo" do
     ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
   end
   cwd chef_solo_project_root
+  user target_user
 end
 
 execute "move the private repo back into the dotfiles_repo_dir" do
