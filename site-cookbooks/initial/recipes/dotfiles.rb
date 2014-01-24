@@ -111,5 +111,5 @@ end
 
 execute "launch dotfiles install" do
   command "./install.sh"
-  cwd "#{target_user_home}#{dotfiles_repo_dir}"
+  cwd "#{target_user_home}/#{dotfiles_repo_dir}"
 end

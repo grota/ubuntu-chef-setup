@@ -1,9 +1,5 @@
 #!/bin/bash
 set -e
-if [ -z $SUDO_USER  ]; then
-  echo "Not running as sudo, bailing out"
-  exit 1
-fi
 
 exists() {
   if command -v $1 >/dev/null 2>&1
@@ -14,6 +10,8 @@ exists() {
   fi
 }
 
+# also make sure we are not running in a working copy during development
+# it's a weak but good enough check.
 if [ "$(ls -A .)" -a ! -f bootstrap.sh ]; then
   echo "Current Dir is not empty, bailing out"
   exit 1
@@ -28,7 +26,7 @@ fi
 
 if ! exists curl; then
   echo Installing curl.
-  apt-get install -y curl < /dev/null
+  sudo apt-get install -y curl < /dev/null
 fi
 
 if ! exists chef-solo; then
@@ -36,11 +34,10 @@ if ! exists chef-solo; then
   curl -L https://www.opscode.com/chef/install.sh | sudo bash
 fi
 
-TARGET_USER=$SUDO_USER
 if command grep -q vboxsf /etc/group; then
-  echo Found vboxsf group, assuming we are in Virtualbox, adding $TARGET_USER to vboxsf group.
-  usermod -a -G vboxsf $TARGET_USER
+  echo Found vboxsf group, assuming we are in Virtualbox, adding $USER to vboxsf group.
+  sudo usermod -a -G vboxsf $USER
 fi
 
-chef-solo -c sudo.rb
-sudo -u $TARGET_USER chef-solo -c user.rb
+sudo chef-solo -c sudo.rb
+chef-solo -c user.rb

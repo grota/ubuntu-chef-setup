@@ -14,13 +14,18 @@ unless missing_attrs.empty?
   Chef::Application.fatal! "You must set #{missing_attrs.join(', ')}."
 end
 
-chef_solo_project_root =  "#{run_context.cookbook_collection['initial'].root_dir}/../../"
+chef_solo_project_root = "#{run_context.cookbook_collection['initial'].root_dir}/../../"
 execute "prefill dropbox dir from backup" do
   command %Q{rsync -a #{node['initial']['dropbox']['source_dir']}/ #{node['initial']['dropbox']['target_dir']}/}
   cwd chef_solo_project_root
   not_if do
     target_dir = "#{node['initial']['dropbox']['target_dir']}"
-    ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
+    target_not_empty = ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
+    source_dir = "#{node['initial']['dropbox']['source_dir']}"
+    source_not_empty_absolute = ::Dir.exists?(source_dir) && (::Dir.entries(source_dir) != ['.', '..'])
+    source_dir = "#{chef_solo_project_root}/#{node['initial']['dropbox']['source_dir']}"
+    source_not_empty_rel_to_proj = ::Dir.exists?(source_dir) && (::Dir.entries(source_dir) != ['.', '..'])
+    target_not_empty || !(source_not_empty_absolute || source_not_empty_rel_to_proj)
   end
 end
 
