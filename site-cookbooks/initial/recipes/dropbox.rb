@@ -3,6 +3,7 @@
 if node['initial']['dropbox'].nil?
   Chef::Application.fatal! "You must set the node['initial']['dropbox'] attribute in chef-solo mode."
 end
+
 missing_attrs = %w[
 source_dir
 target_dir
@@ -13,9 +14,10 @@ unless missing_attrs.empty?
   Chef::Application.fatal! "You must set #{missing_attrs.join(', ')}."
 end
 
+chef_solo_project_root =  "#{run_context.cookbook_collection['initial'].root_dir}/../../"
 execute "prefill dropbox dir from backup" do
   command %Q{rsync -a #{node['initial']['dropbox']['source_dir']}/ #{node['initial']['dropbox']['target_dir']}/}
-  cwd "#{run_context.cookbook_collection['initial'].root_dir}/../../"
+  cwd chef_solo_project_root
   not_if do
     target_dir = "#{node['initial']['dropbox']['target_dir']}"
     ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])

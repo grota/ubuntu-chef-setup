@@ -7,6 +7,7 @@ dotfiles_repo_dir = dotfiles_repo_url.split('/').last.split('.').first
 dropbox_dir       = node['initial']['dropbox']['target_dir']
 private_dotfile_repo_in_dropbox = "#{dropbox_dir}/git_repos/private_rcfiles"
 private_clone_temp_path         = "#{target_user_home}/private_repo_clone_tmp"
+chef_solo_project_root =  "#{run_context.cookbook_collection['initial'].root_dir}/../../"
 
 def dir_not_empty(target_dir)
   ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
@@ -31,8 +32,9 @@ unless ::Dir.exist?("#{target_user_home}/.ssh" )
   end
 end
 
-unless ::File.exists?("#{target_user_home}/.ssh/config")
-  file "#{target_user_home}/.ssh/config" do
+ssh_config = "#{target_user_home}/.ssh/config"
+unless ::File.exists?(ssh_config) || ::File.symlink?(ssh_config)
+  file ssh_config do
     owner target_user
     group target_user
     mode "0700"
@@ -74,12 +76,12 @@ end
 
 execute "clone the dotfiles repo" do
   # the repo will be a read/write url ending in .git
-  command "git clone #{dotfiles_repo_url}"
-  cwd target_user_home
+  command "git clone #{dotfiles_repo_url} #{target_user_home}/#{dotfiles_repo_dir}"
   not_if do
     target_dir = "#{target_user_home}/#{dotfiles_repo_dir}"
     ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
   end
+  cwd chef_solo_project_root
 end
 
 execute "move the private repo back into the dotfiles_repo_dir" do
