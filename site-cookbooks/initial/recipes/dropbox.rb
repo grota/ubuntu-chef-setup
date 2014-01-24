@@ -13,7 +13,7 @@ unless missing_attrs.empty?
   Chef::Application.fatal! "You must set #{missing_attrs.join(', ')}."
 end
 
-execute "sync dropbox before from backup" do
+execute "prefill dropbox dir from backup" do
   command %Q{rsync -a #{node['initial']['dropbox']['source_dir']}/ #{node['initial']['dropbox']['target_dir']}/}
   cwd "#{run_context.cookbook_collection['initial'].root_dir}/../../"
   not_if do

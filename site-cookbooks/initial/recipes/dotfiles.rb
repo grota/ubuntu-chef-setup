@@ -1,49 +1,106 @@
-target_user = node['initial']['user']
-directory "/home/#{target_user}/.ssh" do
-  owner target_user
-  group target_user
-  mode "0700"
+# We somehow go through hoops because we need to clone a r/w repo
+# so we need to setup ssh keys
+target_user       = node['initial']['user']
+target_user_home  = "/home/#{target_user}"
+dotfiles_repo_url = node['initial']['dotfiles']['repo']
+dotfiles_repo_dir = dotfiles_repo_url.split('/').last.split('.').first
+dropbox_dir       = node['initial']['dropbox']['target_dir']
+private_dotfile_repo_in_dropbox = "#{dropbox_dir}/git_repos/private_rcfiles"
+private_clone_temp_path         = "#{target_user_home}/private_repo_clone_tmp"
+
+def dir_not_empty(target_dir)
+  ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
 end
-file "/home/#{target_user}/.ssh/config" do
-  owner target_user
-  group target_user
-  mode "0700"
-  content <<-EOF
+
+target_dir = "#{target_user_home}/#{dotfiles_repo_dir}"
+if dir_not_empty target_dir
+  log "#{target_dir} already exists, bailing out"
+  return
+end
+
+unless dir_not_empty dropbox_dir
+  Chef::Application.fatal! "Missing Dropbox dir"
+end
+
+unless ::Dir.exist?("#{target_user_home}/.ssh" )
+  # create initial ssh config file
+  directory "#{target_user_home}/.ssh" do
+    owner target_user
+    group target_user
+    mode "0700"
+  end
+end
+
+unless ::File.exists?("#{target_user_home}/.ssh/config")
+  file "#{target_user_home}/.ssh/config" do
+    owner target_user
+    group target_user
+    mode "0700"
+    content <<-EOF
 Host github.com
 StrictHostKeyChecking no
-  EOF
+    EOF
+  end
 end
 
-user_home = "/home/#{node['initial']['user']}"
-dotfiles_repo_dir = node['initial']['dotfiles']['repo'].split('/').last.split('.').first
-private_dotfile_repo_in_dropbox = "#{node['initial']['dropbox']['target_dir']}/git_repos/private_rcfiles"
 
-#we assume Dropbox has already been setup
+# We already verified Dropbox has been setup.
+# We need to clone the private repo to a temp path
+# because otherwise when we clone the public repo
+# git complains that the dir is not empty
 execute "clone the private dotfiles repo" do
-  cwd user_home
+  cwd target_user_home
   command <<-BASH
-  git clone #{private_dotfile_repo_in_dropbox} #{dotfiles_repo_dir}/private
+  git clone #{private_dotfile_repo_in_dropbox} #{private_clone_temp_path}
   BASH
   not_if do
-    target_dir = "#{user_home}/#{dotfiles_repo_dir}/private"
-    ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
+    target_dir = private_clone_temp_path
+    private_temp_path_exists = ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
+    target_dir = "#{target_user_home}/#{dotfiles_repo_dir}/private"
+    final_private_repo_path = ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
+    final_private_repo_path || private_temp_path_exists
   end
 end
 
 link "link to main ssh keys (pub)" do
-  to "#{user_home}/#{dotfiles_repo_dir}/private/ssh/gmail.pub"
-  target_file"#{user_home}/.ssh/gmail.pub"
+  to "#{private_clone_temp_path}/ssh/gmail.pub"
+  target_file "#{target_user_home}/.ssh/gmail.pub"
 end
 
 link "link to main ssh keys (priv)" do
-  to "#{user_home}/#{dotfiles_repo_dir}/private/ssh/gmail"
-  target_file "#{user_home}/.ssh/gmail"
+  to "#{private_clone_temp_path}/ssh/gmail"
+  target_file "#{target_user_home}/.ssh/gmail"
 end
 
 execute "clone the dotfiles repo" do
   # the repo will be a read/write url ending in .git
+  command "git clone #{dotfiles_repo_url}"
+  cwd target_user_home
+  not_if do
+    target_dir = "#{target_user_home}/#{dotfiles_repo_dir}"
+    ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
+  end
+end
+
+execute "move the private repo back into the dotfiles_repo_dir" do
   command <<-BASH
-  git clone #{node['initial']['dotfiles']['repo']}
+  rmdir #{dotfiles_repo_dir}/private
+  mv -T #{private_clone_temp_path} #{dotfiles_repo_dir}/private
   BASH
-  cwd "/home/#{node['initial']['user']}"
+  cwd target_user_home
+  not_if do
+    target_dir = "#{target_user_home}/#{dotfiles_repo_dir}/private"
+    ::Dir.exists?(target_dir) && (::Dir.entries(target_dir) != ['.', '..'])
+  end
+end
+
+# we need to re-link the ssh keys
+link "link to main ssh keys (pub)" do
+  to "#{target_user_home}/#{dotfiles_repo_dir}/private/ssh/gmail.pub"
+  target_file"#{target_user_home}/.ssh/gmail.pub"
+end
+
+link "link to main ssh keys (priv)" do
+  to "#{target_user_home}/#{dotfiles_repo_dir}/private/ssh/gmail"
+  target_file "#{target_user_home}/.ssh/gmail"
 end

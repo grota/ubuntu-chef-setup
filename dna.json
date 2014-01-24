@@ -18,6 +18,9 @@
     "dropbox": {
        "arch": "amd64",
        "version": "1.6.0",
+       // absolute path of the dropbox backup.
+       // Since it must be reachable from the target system for testing
+       // (VM) it can also be a relative path from the cookbook dir
        "source_dir": "dropbox_backup",
        "target_dir": "/home/grota/Dropbox"
     }
