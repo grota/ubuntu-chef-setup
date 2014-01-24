@@ -28,7 +28,7 @@ fi
 
 if ! exists curl; then
   echo Installing curl.
-  sudo apt-get install -y curl < /dev/null
+  apt-get install -y curl < /dev/null
 fi
 
 if ! exists chef-solo; then
@@ -39,5 +39,8 @@ fi
 TARGET_USER=$SUDO_USER
 if command grep -q vboxsf /etc/group; then
   echo Found vboxsf group, assuming we are in Virtualbox, adding $TARGET_USER to vboxsf group.
-  sudo usermod -a -G vboxsf $TARGET_USER
+  usermod -a -G vboxsf $TARGET_USER
 fi
+
+chef-solo -c sudo.rb
+sudo -u $TARGET_USER chef-solo -c user.rb

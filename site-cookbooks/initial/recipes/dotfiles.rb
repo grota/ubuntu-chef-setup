@@ -106,3 +106,8 @@ link "link to main ssh keys (priv)" do
   to "#{target_user_home}/#{dotfiles_repo_dir}/private/ssh/gmail"
   target_file "#{target_user_home}/.ssh/gmail"
 end
+
+execute "launch dotfiles install" do
+  command "./install.sh"
+  cwd "#{target_user_home}#{dotfiles_repo_dir}"
+end
