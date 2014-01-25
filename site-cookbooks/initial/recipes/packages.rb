@@ -9,7 +9,7 @@ vim-gnome alarm-clock-applet lm-sensors hddtemp psensor pbzip2 tree
 openjdk-7-jdk ant hamster-indicator ccache sqlitebrowser lftp xapian-omega
 libsearch-xapian-perl libdigest-sha-perl libhtml-scrubber-perl rake
 libreadline-dev build-essential libyaml-dev libsqlite3-dev sqlite3
-libxslt-dev ncurses-dev bison libgdbm-dev libffi-dev
+libxslt-dev ncurses-dev bison libgdbm-dev libffi-dev moreutils
 }
 # Packages that `seem` to be problematic in ubuntu 14.04
 # meld
