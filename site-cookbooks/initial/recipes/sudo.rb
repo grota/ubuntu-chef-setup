@@ -14,12 +14,16 @@ include_recipe "apt::default"
 # required by rvm
 package "gawk"
 include_recipe "git::default"
-include_recipe "php"
-include_recipe "mysql::server"
-include_recipe "mysql::client"
 
-# let's just install apache2 without using the community cookbook,
-# there are too many incompatibilities between apache 2.2 and 2.4
-package "apache2"
 include_recipe "initial::packages"
 include_recipe "initial::dropbox"
+
+execute 'regenerate perl locales' do
+  command 'locale-gen it_IT.UTF-8'
+end
+
+%w[mysql-client libmysqlclient-dev mysql-server].each do |p|
+  package p
+end
+
+include_recipe "initial::apache"
