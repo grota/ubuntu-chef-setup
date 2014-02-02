@@ -26,4 +26,5 @@ end
   package p
 end
 
+include_recipe "initial::php"
 include_recipe "initial::apache"
