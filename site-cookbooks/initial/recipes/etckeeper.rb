@@ -24,3 +24,11 @@ unless node['initial']['etckeeper']['remote_repo'].nil?
     not_if "cd /etc && git remote show origin -n"
   end
 end
+
+# new versions of etckeeper already have this script
+cookbook_file "etckeeper hook push to repo" do
+  action :create_if_missing
+  mode 0755
+  path '/etc/etckeeper/commit.d/99push'
+  source "etckeeper-git-push"
+end
