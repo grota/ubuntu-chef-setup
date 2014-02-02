@@ -11,7 +11,7 @@
 # the tpl for the php_web_app definition which is very similar to the
 # tpl for web_app in apache2's cookbook, but I removed some rewrite statements
 # and included the ProxyPassMatch for the php
-%w[apache2 libapache2-mod-fcgid].each do |p|
+%w[apache2].each do |p|
   package p
 end
 

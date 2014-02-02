@@ -112,10 +112,6 @@ end
 
 # the private remote is in Dropbox only so the "url" changes with the username,
 # for example in Vagrant
-t=  "#{target_user_home}/#{dotfiles_repo_dir}/.gitmodules"
-log t
-log "substitute with #{private_dotfile_repo_in_dropbox}"
-
 ruby_block "change in .gitmodules the path of the private submodule remote" do
   block do
     t=  "#{target_user_home}/#{dotfiles_repo_dir}/.gitmodules"
