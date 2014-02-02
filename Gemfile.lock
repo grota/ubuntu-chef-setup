@@ -55,6 +55,7 @@ GEM
       puma (~> 1.6)
       rest-client (>= 1.0.4, < 1.7.0)
       yajl-ruby (~> 1.1)
+    chef-rewind (0.0.8)
     chef-zero (1.7.2)
       hashie (~> 2.0)
       json
@@ -207,6 +208,7 @@ PLATFORMS
 DEPENDENCIES
   berkshelf
   chef
+  chef-rewind
   foodcritic
   gitkeep
   kitchen-vagrant
