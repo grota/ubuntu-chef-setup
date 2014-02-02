@@ -11,6 +11,8 @@ if node['initial'].nil?
 end
 
 include_recipe "apt::default"
+include_recipe "initial::etckeeper"
+
 # required by rvm
 package "gawk"
 include_recipe "git::default"

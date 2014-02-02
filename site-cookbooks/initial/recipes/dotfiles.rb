@@ -114,7 +114,7 @@ end
 # for example in Vagrant
 ruby_block "change in .gitmodules the path of the private submodule remote" do
   block do
-    t=  "#{target_user_home}/#{dotfiles_repo_dir}/.gitmodules"
+    t = "#{target_user_home}/#{dotfiles_repo_dir}/.gitmodules"
     rc = Chef::Util::FileEdit.new(t)
     rc.search_file_replace_line(/private_rcfiles/, "        url = #{private_dotfile_repo_in_dropbox}")
     rc.write_file

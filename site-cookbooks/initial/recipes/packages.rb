@@ -17,4 +17,3 @@ libxslt-dev ncurses-dev bison libgdbm-dev libffi-dev moreutils
 my_packages.each do |pkg|
   package pkg
 end
-

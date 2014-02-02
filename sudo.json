@@ -10,9 +10,6 @@
     "server_debian_password": "XYW4WwOj5dqwHYggm1kWb5XSeP5Ioyi5f4WYGxl",
     "server_repl_password": "uPWxdMdGz8neEBwCv6zYNDybRumptgckjNxEAxJUK8v"
   },
-  "apache": {
-    "default_modules": [ "alias", "auth_basic", "fastcgi", "mime", "rewrite", "status", "setenvif" ]
-  },
   "initial": {
     "user":  "grota",
     "dropbox": {
@@ -23,6 +20,9 @@
        // (VM) it can also be a relative path from the cookbook dir
        "source_dir": "dropbox_backup",
        "target_dir": "/home/grota/Dropbox"
+    },
+    "etckeeper": {
+      "remote_repo": "/home/grota/Dropbox/git_repos/etckeeper_1404"
     }
   }
 }
