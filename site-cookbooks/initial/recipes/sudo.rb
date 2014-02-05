@@ -17,6 +17,7 @@ user "grota" do
   password '$6$MUVQUZ1h$a.T34Cemc4z1OWp6BYV1LfHXrUSf4KTzN4RC2U/MNbN3CBJUXYr9IPBmt9Oko34osRgQLYasXPFDo87Zutntc0'
   supports :manage_home => true
 end
+include_recipe "initial::sudoers"
 
 include_recipe "initial::apt"
 include_recipe "apt::default"

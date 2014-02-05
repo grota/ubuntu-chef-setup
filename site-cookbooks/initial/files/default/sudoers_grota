@@ -1,0 +1,3 @@
+grota ALL = (root) NOPASSWD: /bin/su
+grota ALL = (root) NOPASSWD: /bin/rm /tmp/php*log
+grota ALL = (root) NOPASSWD: /usr/bin/docker
