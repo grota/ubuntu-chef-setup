@@ -10,6 +10,14 @@ if node['initial'].nil?
   Chef::Application.fatal! "You must set the node['initial'] attribute in chef-solo mode."
 end
 
+user "grota" do
+  shell "/bin/bash"
+  home '/home/grota'
+  # a stub initial one
+  password '$6$MUVQUZ1h$a.T34Cemc4z1OWp6BYV1LfHXrUSf4KTzN4RC2U/MNbN3CBJUXYr9IPBmt9Oko34osRgQLYasXPFDo87Zutntc0'
+  supports :manage_home => true
+end
+
 include_recipe "initial::apt"
 include_recipe "apt::default"
 include_recipe "initial::etckeeper"
