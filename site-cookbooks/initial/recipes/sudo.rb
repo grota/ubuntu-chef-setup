@@ -10,6 +10,7 @@ if node['initial'].nil?
   Chef::Application.fatal! "You must set the node['initial'] attribute in chef-solo mode."
 end
 
+include_recipe "initial::apt"
 include_recipe "apt::default"
 include_recipe "initial::etckeeper"
 
